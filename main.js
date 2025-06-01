@@ -24,10 +24,10 @@ function showItemsList (){
          <div class="item">
                 <div>
                     <input type="checkbox" name="list" id="item-${index}">
-                    <div class="custom-checkbox">
+                    <div class="custom-checkbox" onclick="checkItem('${item.name}')">
                         <img src="./assets-20250531T174048Z-1-001/assets/checked.svg" alt="imagem do check">
                     </div>
-                    <label for="item-${index}">${item.name}</label>
+                    <label for="item-${index}" onclick="checkItem('${item.name}')">${item.name}</label>
                 </div>
 
                 <button onclick="removeItem('${item.name}')">
@@ -39,7 +39,7 @@ function showItemsList (){
     })
 }
 
-function removeItem(itemName){
+function removeItem(itemName){7
     const itemIndex = items.findIndex((item)=> item.name === itemName)
     const divWarning = document.querySelector(".warning") 
 
@@ -53,5 +53,20 @@ function removeItem(itemName){
         items.splice(itemIndex, 1)
     }
 
+    showItemsList()
+}
+
+function checkItem (itemName){
+    const item = items.find((item) => item.name === itemName)
+    
+    /* if(item.checked === true) {
+        item.checked = false
+    } else {
+        item.checked = true
+    }*/
+
+   // item.checked === true ? item.checked = false : item.checked = true
+
+    item.checked = !item.checked
     showItemsList()
 }
